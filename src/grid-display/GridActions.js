@@ -1,8 +1,9 @@
 import React from 'react'
 import { TbEdit } from "react-icons/tb";
 import { FaSave, FaCheckSquare, FaPen, FaSquare, FaEraser } from "react-icons/fa";
+import { MdOutlineNumbers } from "react-icons/md";
 
-export default function GridActions({ isEditing, toggleEdit, saveGrid, 
+export default function GridActions({ isEditing, toggleEdit, saveGrid, toggleCount, setToggleCount,
   resetActions, isChecking, setIsChecking, isAdding, setIsAdding, isFilling, setIsFilling, isErasing, setIsErasing }) {
 
   const EDITING_ICON_SIZE = 30
@@ -28,6 +29,16 @@ export default function GridActions({ isEditing, toggleEdit, saveGrid,
             `}
           size={EDITING_ICON_SIZE}
         /> */}
+        {/* Toggle Count */}
+
+        <MdOutlineNumbers onClick={() => setToggleCount(!toggleCount)}
+          className={` border border-black cursor-pointer my-1 p-1 
+              hover:animate-pulse hover:bg-slate-500
+              ${toggleCount && 'bg-slate-700 text-white'}
+            `}
+          size={EDITING_ICON_SIZE}
+        />
+
       </div>
 
       {/* Edit Mode */}

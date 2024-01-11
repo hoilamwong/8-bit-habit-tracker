@@ -18,6 +18,8 @@ export default function App() {
 	const gridcolumn = 11
 	const [totalSquare, setTotalSquare] = useState(0)
 
+	const [toggleCount, setToggleCount] = useState(true)
+
 	/* Make Grid at Browser Start */
 	useEffect(() => {
 		makeGrid(gridrow, gridcolumn)
@@ -158,11 +160,14 @@ export default function App() {
 					gridcolumn={gridcolumn}
 					isEditing={isEditing}
 					handleSquareClick={handleSquareClick}
+					toggleCount={toggleCount}
 				/>
 
 				<GridActions
 					isEditing={isEditing}
 					toggleEdit={toggleEdit}
+					toggleCount={toggleCount}
+					setToggleCount={setToggleCount}
 					saveGrid={saveGrid}
 					resetActions={resetActions} 
 					isChecking={isChecking}

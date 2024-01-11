@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEditing }) {
+export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEditing, toggleCount }) {
 
 
   return (
@@ -10,7 +10,7 @@ export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEdi
         <div
           key={`square-${square.id}`}
           onClick={(e) => handleSquareClick(e, square.id)}
-          className={` w-full aspect-square justify-center items-center flex
+          className={` w-full aspect-square justify-center items-center flex text-sm
             ${square.checked && 'bg-gray-900 text-white' }
             ${square.selectable ? 
                 `cursor-pointer border bg-gray-400` 
@@ -20,10 +20,8 @@ export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEdi
             ${isEditing && 'border border-black/10 cursor-pointer'}
           `}
         >
-          {square.selectable &&
-            <span className='text-black-20'>
-              {square.count}
-            </span>
+          {(square.selectable && toggleCount) &&
+            <p> {square.count} </p>
           }
         </div>
       ))}
