@@ -1,5 +1,6 @@
 # 8-bit-habit-tracker
-Keep track of your habits by adding in squares inside the calendar (grid)!
+Keep track of your habits by adding in squares inside the calendar (grid) !
+https://8-bit-habit-tracker-hoilamwong.vercel.app/
 
 ## Features:
 - Create your own pattern (in Edit Mode)
