@@ -11,13 +11,14 @@ export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEdi
           key={`square-${square.id}`}
           onClick={(e) => handleSquareClick(e, square.id)}
           className={` w-full aspect-square justify-center items-center flex
-              ${square.selectable ? 
-                  square.checked ? 'border cursor-pointer bg-gray-900 text-white' : 'bg-gray-400'
-                :
-                  'bg-gray-100 cursor-not-allowed'
-              }
-              ${isEditing && 'border border-black/10 cursor-pointer'}
-            `}
+            ${square.checked && 'bg-gray-900 text-white' }
+            ${square.selectable ? 
+                `cursor-pointer border bg-gray-400` 
+              :
+                'cursor-not-allowed bg-gray-100'
+            }
+            ${isEditing && 'border border-black/10 cursor-pointer'}
+          `}
         >
           {square.selectable &&
             <span className='text-black-20'>
