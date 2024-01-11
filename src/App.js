@@ -12,10 +12,11 @@ export default function App() {
 	const [isFilling, setIsFilling] = useState(false)
 	const [isErasing, setIsErasing] = useState(true)
 	const [isChecking, setIsChecking] = useState(true)
-
-	const [grid, setGrid] = useState(JSON.parse(localStorage.getItem(GRID_ID)) || [])
+	
 	const gridrow = 8
 	const gridcolumn = 11
+	const [grid, setGrid] = useState(JSON.parse(localStorage.getItem(GRID_ID)) || makeGrid(gridrow, gridcolumn))
+
 	const [totalSquare, setTotalSquare] = useState(0)
 
 	const [toggleCount, setToggleCount] = useState(true)
