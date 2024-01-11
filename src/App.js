@@ -12,19 +12,30 @@ export default function App() {
 	const [isFilling, setIsFilling] = useState(false)
 	const [isErasing, setIsErasing] = useState(true)
 	const [isChecking, setIsChecking] = useState(true)
-	
+
 	const gridrow = 8
 	const gridcolumn = 11
-	const [grid, setGrid] = useState(JSON.parse(localStorage.getItem(GRID_ID)) || makeGrid(gridrow, gridcolumn))
+	const makeGrid = (row, column) => {
+		let gridArr = []
+		// Push square to subarray 
+		for (let i = 0; i < (row * column); i++) {
+			// default square
+			const square = {
+				id: i,
+				checked: false,
+				selectable: false,
+				count: "1",
+				completeDate: "1/10/2024",
+				description: "",
+			}
+			gridArr.push(square)
+		}
+		return gridArr
+	}
+	const [grid, setGrid] = useState((localStorage.getItem(GRID_ID) && localStorage.getItem(GRID_ID).length)?  JSON.parse(localStorage.getItem(GRID_ID)): makeGrid(gridrow, gridcolumn))
 
 	const [totalSquare, setTotalSquare] = useState(0)
-
 	const [toggleCount, setToggleCount] = useState(true)
-
-	/* Make Grid at Browser Start */
-	useEffect(() => {
-		makeGrid(gridrow, gridcolumn)
-	}, [])
 
 	/* set count for each square when totalSquare is changed */
 	// from top left to bottom right
@@ -48,23 +59,23 @@ export default function App() {
 		localStorage.setItem('grid', JSON.stringify(grid))
 	}, [grid])
 
-	const makeGrid = (row, column) => {
-		let gridArr = []
-		// Push square to subarray 
-		for (let i = 0; i < (row * column); i++) {
-			// default square
-			const square = {
-				id: i,
-				checked: false,
-				selectable: false,
-				count: "1",
-				completeDate: "1/10/2024",
-				description: "",
-			}
-			gridArr.push(square)
-		}
-		setGrid(gridArr)
-	}
+	// const makeGrid = (row, column) => {
+	// 	let gridArr = []
+	// 	// Push square to subarray 
+	// 	for (let i = 0; i < (row * column); i++) {
+	// 		// default square
+	// 		const square = {
+	// 			id: i,
+	// 			checked: false,
+	// 			selectable: false,
+	// 			count: "1",
+	// 			completeDate: "1/10/2024",
+	// 			description: "",
+	// 		}
+	// 		gridArr.push(square)
+	// 	}
+	// 	setGrid(gridArr)
+	// }
 
 	const resetActions = () => {
 		setIsFilling(false)

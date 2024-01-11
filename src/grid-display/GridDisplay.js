@@ -4,7 +4,7 @@ export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEdi
 
 
   return (
-    <div className={'grid p-4 border border-black gap-1 '} style={{ gridTemplateColumns: `repeat(${gridcolumn}, minmax(0, 1fr))` }}>
+    <div className={'grid p-4 border border-black '} style={{ gridTemplateColumns: `repeat(${gridcolumn}, minmax(0, 1fr))` }}>
       {/* Individual Square */}
       {grid && grid.map((square) => (
         <div
@@ -13,11 +13,12 @@ export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEdi
           className={` w-full aspect-square justify-center items-center flex text-sm
             ${square.checked && 'bg-gray-900 text-white' }
             ${square.selectable ? 
-                `cursor-pointer border bg-gray-400` 
+                `cursor-pointer bg-gray-400` 
               :
                 'cursor-not-allowed bg-gray-100'
             }
-            ${isEditing && 'border border-black/10 cursor-pointer'}
+            ${(square.selectable || square.checked) && 'border border-gray-500/50'}
+            ${isEditing && 'border border-black/80 cursor-pointer'}
           `}
         >
           {(square.selectable && toggleCount) &&

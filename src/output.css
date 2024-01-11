@@ -651,6 +651,15 @@ video {
   border-color: rgb(0 0 0 / 0.1);
 }
 
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.border-gray-500\/50 {
+  border-color: rgb(107 114 128 / 0.5);
+}
+
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -673,6 +682,10 @@ video {
 
 .bg-yellow-400\/10 {
   background-color: rgb(250 204 21 / 0.1);
+}
+
+.bg-gray-500\/50 {
+  background-color: rgb(107 114 128 / 0.5);
 }
 
 .p-1 {
