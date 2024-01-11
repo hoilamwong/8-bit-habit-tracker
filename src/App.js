@@ -152,7 +152,7 @@ export default function App() {
 					: square
 			))
 		}
-		let newTotalSquare = grid.filter((square) => square.selectable).length
+		let newTotalSquare = newGridSquares.filter((square) => square.selectable).length
 		setTotalSquare(newTotalSquare)
 		setGrid(newGridSquares)
 	}
