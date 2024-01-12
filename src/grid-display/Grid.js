@@ -162,8 +162,8 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 	}
 
 	return (
-		<div className="select-none p-2">
-			<div className='border border-black aspect-square flex items-center justify-center '>
+		<div className="select-none p-6 pb-2 bg-white/70 rounded-lg shadow-sm my-4">
+			{/* <div className='bg-white/70 rounded-lg aspect-square flex items-center justify-center p-4'> */}
 				{/* Grid */}
 				<GridDisplay
 					grid={grid}
@@ -172,8 +172,8 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					handleSquareClick={handleSquareClick}
 					toggleCount={toggleCount}
 				/>
-			</div>
-			<div className='flex justify-between'>
+			{/* </div> */}
+			<div className='flex justify-between my-2'>
 				<GridActions
 					grid={grid}
 					setGrid={setGrid}
@@ -192,7 +192,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					isErasing={isErasing}
 					setIsErasing={setIsErasing}
 				/>
-				<div className='text-right'>
+				<div className='text-right text-sm text-indigo-400 h-fit mt-auto'>
 					{/* Grid Info */}
 					Total Selectable: {totalSquare} <br/>
 					Checked: {totalChecked} <br/>

@@ -14,11 +14,20 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
 
       {/* Actions */}
       <div className='flex'>
+         {/* Toggle Count */}
+         <MdOutlineNumbers onClick={() => setToggleCount(!toggleCount)}
+          className={` rounded-3xl cursor-pointer m-1 p-1 
+              hover:animate-pulse hover:bg-slate-500
+              ${toggleCount && 'bg-slate-700 text-white'}
+            `}
+          size={EDITING_ICON_SIZE}
+        />
+
         {/* Edit */}
         <TbEdit onClick={() => toggleEdit()}
-          className={` border border-black cursor-pointer my-1 p-1 
+          className={`rounded-xl border-slate-700 border-2 shadow-sm cursor-pointer my-1 p-1 
               hover:animate-pulse hover:bg-slate-500
-              ${isEditing && 'bg-slate-700 text-white animate-pulse'}
+              ${isEditing ? 'bg-slate-700 text-white animate-pulse': 'bg-white'}
             `}
           size={EDITING_ICON_SIZE}
         />
@@ -30,15 +39,7 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
             `}
           size={EDITING_ICON_SIZE}
         /> */}
-        {/* Toggle Count */}
-
-        <MdOutlineNumbers onClick={() => setToggleCount(!toggleCount)}
-          className={` border border-black cursor-pointer my-1 p-1 
-              hover:animate-pulse hover:bg-slate-500
-              ${toggleCount && 'bg-slate-700 text-white'}
-            `}
-          size={EDITING_ICON_SIZE}
-        />
+       
 
       </div>
 
@@ -86,7 +87,7 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
 
           </div>
           <button onClick={() => { }}
-            className={` border border-black cursor-pointer p-1 
+            className={`border-b border-x border-black cursor-pointer p-1 
                       hover:animate-pulse hover:bg-slate-500 `}
           >
             Reset Grid
