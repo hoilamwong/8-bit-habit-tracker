@@ -4,7 +4,12 @@ module.exports = {
   purge: ["./src/**/*.{html,js, jsx}"],
   content: ["./src/**/*.{html,js, jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'hover': '#6366f1',
+        'checked': '#6366f1'
+      }
+    },
   },
   plugins: [],
 }

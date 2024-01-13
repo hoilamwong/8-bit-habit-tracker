@@ -6,7 +6,7 @@ export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEdi
 
   return (
     <div
-      className={'grid p-4 bg-white/30 rounded-2xl shadow-2xl w-full gap-1'} 
+      className={'grid p-4 bg-white/30 rounded-2xl shadow-sm shadow-indigo-200 w-full gap-1'} 
       style={{ 
         gridTemplateColumns: `repeat(${gridcolumn}, minmax(0, 1fr))`
       }}
@@ -16,16 +16,15 @@ export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEdi
         <div
           key={`square-${square.id}`}
           onClick={(e) => handleSquareClick(e, square.id)}
-          className={`h-full w-full aspect-square justify-center items-center flex text-sm rounded-lg shadow-sm shadow-indigo-100 hover:scale-110 duration-100 transition-transform
-            ${square.checked && 'bg-indigo-400 text-white' }
-            ${square.selectable && !square.checked && `cursor-pointer bg-indigo-200`}
-            ${!square.selectable && 'cursor-not-allowed'}
-            ${(square.selectable || square.checked) && 'border border-indigo-400/50'}
-            ${isEditing && 'border border-indigo-600/50 cursor-pointer'}
+          className={`h-full w-full aspect-square justify-center items-center flex text-sm rounded-lg shadow-sm shadow-checked-100 hover:scale-110 duration-100 transition-transform
+            ${square.checked && 'bg-checked/80 text-white' }
+            ${square.selectable && !square.checked && ` bg-checked/60 text-checked`}
+            ${(square.selectable || square.checked) && 'cursor-pointer border-2 border-white/20 shadow-checked'}
+            ${isEditing && 'border border-indigo-300 cursor-pointer'}
           `}
         >
           {(square.selectable && toggleCount) &&
-            <div className='hidden sm:flex'>
+            <div className='hidden sm:flex uppercase font-bold text-sm'>
               {square.count} 
             </div>
           }

@@ -162,7 +162,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 	}
 
 	return (
-		<div className="select-none p-6 pb-2 bg-white/70 rounded-lg shadow-sm my-4">
+		<div className="select-none p-6 pb-2 bg-white/30 rounded-lg shadow-md shadow-pink-200 my-4">
 			{/* <div className='bg-white/70 rounded-lg aspect-square flex items-center justify-center p-4'> */}
 				{/* Grid */}
 				<GridDisplay
@@ -192,7 +192,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					isErasing={isErasing}
 					setIsErasing={setIsErasing}
 				/>
-				<div className='text-right text-sm text-indigo-400 h-fit mt-auto'>
+				<div className='text-right text-indigo-400/80 h-fit mt-auto uppercase font-semibold text-sm'>
 					{/* Grid Info */}
 					Total Selectable: {totalSquare} <br/>
 					Checked: {totalChecked} <br/>

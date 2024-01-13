@@ -6,94 +6,118 @@ import { MdOutlineNumbers } from "react-icons/md";
 export default function GridActions({ grid, setGrid, isEditing, toggleEdit, saveGrid, toggleCount, setToggleCount,
   resetActions, isChecking, setIsChecking, isAdding, setIsAdding, isFilling, setIsFilling, isErasing, setIsErasing }) {
 
-  const EDITING_ICON_SIZE = 30
+  const EDITING_ICON_SIZE = 25
 
 
   return (
     <div>
 
       {/* Actions */}
-      <div className='flex'>
-         {/* Toggle Count */}
-         <MdOutlineNumbers onClick={() => setToggleCount(!toggleCount)}
-          className={` rounded-3xl cursor-pointer m-1 p-1 
-              hover:animate-pulse hover:bg-slate-500
-              ${toggleCount && 'bg-slate-700 text-white'}
-            `}
-          size={EDITING_ICON_SIZE}
-        />
+      <div className='flex items-center'>
+
+        {/* Toggle Count */}
+        <button
+          onClick={() => setToggleCount(!toggleCount)}
+          className={`flex items-center rounded-3xl cursor-pointer m-1 hover:mr-3 p-1 shadow-sm shadow-hover
+            hover:scale-105 duration-400 ease-in transition-transform 
+            ${toggleCount ? 'bg-hover/80 text-white' : 'bg-white/50 text-hover'}
+          `}>
+          <MdOutlineNumbers
+            size={EDITING_ICON_SIZE}
+            className='peer'
+          />
+          <span className='hidden peer-hover:inline hover:inline px-2 uppercase font-bold text-sm '>Toggle Numbers</span>
+        </button>
 
         {/* Edit */}
-        <TbEdit onClick={() => toggleEdit()}
-          className={`rounded-xl border-slate-700 border-2 shadow-sm cursor-pointer my-1 p-1 
-              hover:animate-pulse hover:bg-slate-500
-              ${isEditing ? 'bg-slate-700 text-white animate-pulse': 'bg-white'}
-            `}
-          size={EDITING_ICON_SIZE}
-        />
-
-        {/* Save Maybe Unnecessary*/}
-        {/* <FaSave onClick={() => saveGrid()}
-          className={` flex items-center border border-black cursor-pointer my-1 p-1 
-              hover:animate-pulse hover:bg-slate-500
-            `}
-          size={EDITING_ICON_SIZE}
-        /> */}
-       
+        <button
+          onClick={() => toggleEdit()}
+          className={`flex items-center rounded-3xl cursor-pointer m-1 hover:mr-3 p-1 shadow-sm shadow-hover
+            hover:scale-105 duration-400 ease-in transition-transform 
+            ${isEditing ? 'bg-hover/80 text-white' : 'bg-white/50 text-hover'}
+          `}>
+          <TbEdit
+            size={EDITING_ICON_SIZE}
+            className='peer'
+          />
+          {isEditing ?
+            <span className='uppercase font-bold text-sm'>Editing...</span>
+            :
+            <span className='hidden peer-hover:inline hover:inline px-2 uppercase font-bold text-sm '>Edit Grid</span>
+          }
+        </button>
 
       </div>
 
       {/* Edit Mode */}
       {isEditing &&
         <>
-          <div className='flex '>
-            {/* Toggle check Square */}
-            <FaCheckSquare onClick={() => { resetActions(); setIsChecking(true); }}
-              className={` border border-black cursor-pointer p-1 
-								hover:animate-pulse hover:bg-slate-500
-								${isChecking && 'bg-slate-700 text-white '}
-								`}
-              size={EDITING_ICON_SIZE}
-            />
+          <div className='grid grid-cols-5 text-hover gap-1'>
 
+            {/* Toggle check Square */}
+            <button
+              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-auto
+              hover:scale-90 duration-400 ease-in transition-transform 
+                ${isChecking && 'border-hover/80 border-2 scale-105'}
+                `}
+              onClick={() => { resetActions(); setIsChecking(true); }}
+            >
+              <FaCheckSquare
+                className='m-2 mx-auto my-auto'
+                size={EDITING_ICON_SIZE - 5}
+              />
+            </button>
 
             {/* Add a Unchecked Selectable Mode */}
-            <FaPen onClick={() => { resetActions(); setIsAdding(true); }}
-              className={` border border-black cursor-pointer p-1 
-              hover:animate-pulse hover:bg-slate-500
-              ${isAdding && 'bg-slate-700 text-white'}
-              `}
-              size={EDITING_ICON_SIZE}
-            />
+            <button
+              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-auto
+                hover:scale-90 duration-400 ease-in transition-transform 
+                ${isAdding && 'border-hover/80 border-2 scale-105'}
+                `}
+              onClick={() => { resetActions(); setIsAdding(true); }}
+            >
+              <FaPen
+                className='m-2 mx-auto my-auto'
+                size={EDITING_ICON_SIZE - 5}
+              />
+            </button>
 
             {/* Add Checked Non-Selectable Sqaure Mode */}
-            <FaSquare onClick={() => { resetActions(); setIsFilling(true); }}
-              className={` border border-black cursor-pointer p-1 
-              hover:animate-pulse hover:bg-slate-500
-              ${isFilling && 'bg-slate-700 text-white'}
-              `}
-              size={EDITING_ICON_SIZE}
-            />
+            <button
+              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-auto
+               hover:scale-90 duration-400 ease-in transition-transform 
+               ${isFilling && 'border-hover/80 border-2 scale-105'}
+               `}
+              onClick={() => { resetActions(); setIsFilling(true); }}
+            >
+              <FaSquare
+                className='m-2 mx-auto my-auto'
+                size={EDITING_ICON_SIZE - 5}
+              />
+            </button>
 
-
-            {/* Eraser */}
-            <FaEraser onClick={() => { resetActions(); setIsErasing(true); }}
-              className={` border border-black cursor-pointer p-1 
-                hover:animate-pulse hover:bg-slate-500
-                ${isErasing && 'bg-slate-700 text-white'}
+             {/* Eraser */}
+            <button
+              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-auto
+                hover:scale-90 duration-400 ease-in transition-transform 
+                ${isErasing && 'border-hover/80 border-2 scale-105'}
                 `}
-              size={EDITING_ICON_SIZE}
-            />
-
+              onClick={() => { resetActions(); setIsErasing(true); }}
+            >
+              <FaEraser
+                className='m-2 mx-auto my-auto'
+                size={EDITING_ICON_SIZE - 5}
+              />
+            </button>
           </div>
-          <button onClick={() => { }}
-            className={`border-b border-x border-black cursor-pointer p-1 
+          {/* <button onClick={() => { }}
+            className={`cursor-pointer p-1 
                       hover:animate-pulse hover:bg-slate-500 `}
           >
             Reset Grid
-          </button>
+          </button> */}
         </>
       }
-    </div>
+    </div >
   )
 }
