@@ -10,8 +10,7 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
 
 
   return (
-    <div>
-
+    <div className='w-full'>
       {/* Actions */}
       <div className='flex items-center'>
 
@@ -52,11 +51,11 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
       {/* Edit Mode */}
       {isEditing &&
         <>
-          <div className='grid grid-cols-5 text-hover gap-1'>
+          <div className=' text-hover flex'>
 
             {/* Toggle check Square */}
             <button
-              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-auto
+              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-1
               hover:scale-90 duration-400 ease-in transition-transform 
                 ${isChecking && 'border-hover/80 border-2 scale-105'}
                 `}
@@ -70,7 +69,7 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
 
             {/* Add a Unchecked Selectable Mode */}
             <button
-              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-auto
+              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-1
                 hover:scale-90 duration-400 ease-in transition-transform 
                 ${isAdding && 'border-hover/80 border-2 scale-105'}
                 `}
@@ -84,7 +83,7 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
 
             {/* Add Checked Non-Selectable Sqaure Mode */}
             <button
-              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-auto
+              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-1
                hover:scale-90 duration-400 ease-in transition-transform 
                ${isFilling && 'border-hover/80 border-2 scale-105'}
                `}
@@ -98,7 +97,7 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
 
              {/* Eraser */}
             <button
-              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-auto
+              className={`cursor-pointer p-1 rounded-lg bg-white/30 aspect-square shadow-sm shadow-hover m-1
                 hover:scale-90 duration-400 ease-in transition-transform 
                 ${isErasing && 'border-hover/80 border-2 scale-105'}
                 `}

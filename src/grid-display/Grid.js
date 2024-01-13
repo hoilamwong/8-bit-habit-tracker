@@ -192,7 +192,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					isErasing={isErasing}
 					setIsErasing={setIsErasing}
 				/>
-				<div className='text-right text-indigo-400/80 h-fit mt-auto uppercase font-semibold text-sm'>
+				<div className='text-right text-indigo-400/80 h-fit mt-auto uppercase font-semibold text-sm flex-none'>
 					{/* Grid Info */}
 					Total Selectable: {totalSquare} <br/>
 					Checked: {totalChecked} <br/>
