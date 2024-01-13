@@ -1,5 +1,7 @@
 import React from 'react'
 import Grid from './grid-display/Grid'
+import Counter from './features/counter/Counter'
+
 export default function App() {
 
   const GRID_SIZE = 72
@@ -45,9 +47,11 @@ export default function App() {
               GRID_COLUMN={11}
             />
           </div>
+          <div>
+            <Counter />
+          </div>
         </div>
       </div>
-
     </div>
   )
 }
