@@ -2,7 +2,7 @@ import GridDisplay from './GridDisplay';
 import GridActions from './GridActions';
 import { useState, useEffect } from 'react';
 
-export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
+export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN, DEFAULT_GRID }) {
 
 	// const GRID_ID = 'grid'
 	// const GRID_ROW = 8
@@ -38,7 +38,13 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 		}
 		return gridArr
 	}
-	const [grid, setGrid] = useState((localStorage.getItem(GRID_ID) && localStorage.getItem(GRID_ID).length) ? JSON.parse(localStorage.getItem(GRID_ID)) : makeGrid(GRID_ROW, GRID_COLUMN))
+	const [grid, setGrid] = useState(
+		(localStorage.getItem(GRID_ID) && localStorage.getItem(GRID_ID).length) ?
+		 	JSON.parse(localStorage.getItem(GRID_ID)) 
+		: 
+			DEFAULT_GRID ? DEFAULT_GRID :
+		 	makeGrid(GRID_ROW, GRID_COLUMN)
+	)
 
 	const [totalSquare, setTotalSquare] = useState(grid.filter((square) => square.selectable).length)
 	const [toggleCount, setToggleCount] = useState(true)
