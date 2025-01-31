@@ -108,7 +108,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 				newGridSquares = grid.map((square) => (square.id === id ?
 					{
 						...square,
-						checked: ((square.selectable && square.checked) ? true : !square.checked),
+						checked: true, 
 						selectable: false
 					}
 					: square
@@ -121,9 +121,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					{
 						...square,
 						checked: false,
-						// if square is checked and selectable, stay selectable
-						// else inverse it 
-						selectable: ((square.selectable && square.checked) ? true : !square.selectable)
+						selectable: true
 					}
 					: square
 				))

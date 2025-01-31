@@ -3,6 +3,17 @@ import React, { useEffect, useState } from 'react'
 export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEditing, toggleCount }) {
 
   // let getGridWidth = document.getElementById('grid').offsetWidth
+  const [overSquareId, setOverSquareId] = useState(null)
+  const handleMouseOver = (e, id) => {
+    console.log(id);
+    
+    // prevent multiple toggling
+    if(overSquareId == id) return
+    setOverSquareId(id)
+    if(e.buttons === 1 || e.buttons === 3){
+      handleSquareClick(e, id)
+    }
+  }
 
   return (
     <div
@@ -15,7 +26,9 @@ export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEdi
       {grid && grid.map((square) => (
         <div
           key={`square-${square.id}`}
-          onClick={(e) => handleSquareClick(e, square.id)}
+          // onClick={(e) => handleSquareClick(e, square.id)}
+          onMouseDown={(e) => handleSquareClick(e, square.id)}
+          onMouseOver={(e) => handleMouseOver(e, square.id)}
           className={`h-full w-full aspect-square justify-center items-center flex text-sm hover:scale-110 duration-100 transition-transform
             ${square.checked && 'bg-slate-800 text-white' }
             ${square.selectable && !square.checked && `cursor-pointer bg-slate-500/50`}
