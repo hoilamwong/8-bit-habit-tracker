@@ -192,11 +192,11 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 				/>
 				<div className='flex justify-center text-right text-sm text-slate-800 h-fit  '>
 					{/* Grid Info */}
-					<div className={`${!isEditing && 'hidden'} ${isEditing && 'block'}`}>
+					{/* <div className={`${!isEditing && 'hidden'} ${isEditing && 'block'}`}>
 						Total Selectable: {totalSquare} <br />
 						Checked: {totalChecked} <br />
-					</div>
-					<div>
+					</div> */}
+					<div className='font-bold'>
 						{Math.trunc(totalChecked / totalSquare * 100) || 0} %
 					</div>
 				</div>

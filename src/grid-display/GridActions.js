@@ -10,88 +10,70 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
 
 
   return (
-    <div>
+    <div className='flex'>
 
       {/* Actions */}
-      <div className='flex'>
-         {/* Toggle Count */}
-         <MdOutlineNumbers onClick={() => setToggleCount(!toggleCount)}
-          className={` rounded-3xl cursor-pointer m-1 p-1 
-              hover:animate-pulse hover:bg-slate-500
-              ${toggleCount && 'bg-slate-700 text-white'}
-            `}
-          size={EDITING_ICON_SIZE}
-        />
 
-        {/* Edit */}
-        <TbEdit onClick={() => toggleEdit()}
-          className={`rounded-xl border-slate-700 border-2 shadow-sm cursor-pointer my-1 p-1 
-              hover:animate-pulse hover:bg-slate-500
-              ${isEditing ? 'bg-slate-700 text-white animate-pulse': 'bg-white'}
+      {/* Edit */}
+      <div onClick={() => toggleEdit()}
+        className={`cursor-pointer px-2 h-fit font-thin hover:italic
+              ${isEditing && 'animate-pulse bg-slate-700 text-white'}
             `}
-          size={EDITING_ICON_SIZE}
-        />
-
-        {/* Save Maybe Unnecessary*/}
-        {/* <FaSave onClick={() => saveGrid()}
-          className={` flex items-center border border-black cursor-pointer my-1 p-1 
-              hover:animate-pulse hover:bg-slate-500
-            `}
-          size={EDITING_ICON_SIZE}
-        /> */}
-       
-
+        size={EDITING_ICON_SIZE}>
+        {isEditing ? <span>Save</span> : <span>Edit</span>}
       </div>
 
       {/* Edit Mode */}
       {isEditing &&
         <>
-          <div className='flex '>
-            {/* Toggle check Square */}
-            <FaCheckSquare onClick={() => { resetActions(); setIsChecking(true); }}
-              className={` border border-black cursor-pointer p-1 
-								hover:animate-pulse hover:bg-slate-500
-								${isChecking && 'bg-slate-700 text-white '}
-								`}
-              size={EDITING_ICON_SIZE}
-            />
-
-
+          <div className='flex gap-1 ml-4'>
             {/* Add a Unchecked Selectable Mode */}
             <FaPen onClick={() => { resetActions(); setIsAdding(true); }}
-              className={` border border-black cursor-pointer p-1 
-              hover:animate-pulse hover:bg-slate-500
-              ${isAdding && 'bg-slate-700 text-white'}
+              className={`  cursor-pointer p-1 hover:text-slate-800
+              ${isAdding ? 'border-b-2 border-slate-800 text-slate-800 ' : 'text-slate-500'}
               `}
               size={EDITING_ICON_SIZE}
             />
 
             {/* Add Checked Non-Selectable Sqaure Mode */}
             <FaSquare onClick={() => { resetActions(); setIsFilling(true); }}
-              className={` border border-black cursor-pointer p-1 
-              hover:animate-pulse hover:bg-slate-500
-              ${isFilling && 'bg-slate-700 text-white'}
+              className={`  cursor-pointer p-1 hover:text-slate-800
+              ${isFilling ? 'border-b-2 border-slate-800 text-slate-800 ' : 'text-slate-500'}
               `}
               size={EDITING_ICON_SIZE}
             />
 
-
             {/* Eraser */}
             <FaEraser onClick={() => { resetActions(); setIsErasing(true); }}
-              className={` border border-black cursor-pointer p-1 
-                hover:animate-pulse hover:bg-slate-500
-                ${isErasing && 'bg-slate-700 text-white'}
+              className={`  cursor-pointer p-1 hover:text-slate-800
+                ${isErasing ? 'border-b-2 border-slate-800 text-slate-800 ' : 'text-slate-500'}
                 `}
               size={EDITING_ICON_SIZE}
             />
 
+            {/* Toggle check Square */}
+            <FaCheckSquare onClick={() => { resetActions(); setIsChecking(true); }}
+              className={`cursor-pointer p-1 hover:text-slate-800
+								${isChecking ? 'border-b-2 border-slate-800 text-slate-800 ' : 'text-slate-500'}
+								`}
+              size={EDITING_ICON_SIZE}
+            />
+
+            {/* Toggle Count */}
+            <MdOutlineNumbers onClick={() => setToggleCount(!toggleCount)}
+              className={`cursor-pointer p-1 hover:text-slate-800
+              ${toggleCount ? 'border-b-2 border-slate-800 text-slate-800 ' : 'text-slate-500'}
+            `}
+              size={EDITING_ICON_SIZE}
+            />
+
           </div>
-          <button onClick={() => { }}
+          {/* <button onClick={() => { }}
             className={`border-b border-x border-black cursor-pointer p-1 
                       hover:animate-pulse hover:bg-slate-500 `}
           >
             Reset Grid
-          </button>
+          </button> */}
         </>
       }
     </div>

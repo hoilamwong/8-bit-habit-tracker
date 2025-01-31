@@ -5,8 +5,6 @@ export default function GridDisplay({ grid, gridcolumn, handleSquareClick, isEdi
   // let getGridWidth = document.getElementById('grid').offsetWidth
   const [overSquareId, setOverSquareId] = useState(null)
   const handleMouseOver = (e, id) => {
-    console.log(id);
-    
     // prevent multiple toggling
     if(overSquareId == id) return
     setOverSquareId(id)

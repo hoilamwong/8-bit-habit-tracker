@@ -21,16 +21,6 @@ export default function App() {
     return highestID
   }
 
-  // useEffect(() => {
-  //   const container = document.querySelector('.overflow-x-auto')
-  //   container.scrollLeft = window.innerWidth
-  //   console.log(window.innerWidth);
-
-  //   const scrollAnimation = setInterval(() => {
-  //     container.scrollLeft -= 150
-  //   }, [300])
-  // })
-
   const addGrid = () => {
     const newId = highestGridId() + 1
     const newGridKey = `grid${newId}`
