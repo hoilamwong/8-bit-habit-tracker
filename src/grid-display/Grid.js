@@ -162,16 +162,16 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 	}
 
 	return (
-		<div className="select-none p-6 pb-2 bg-white/70 rounded-lg shadow-sm my-4">
+		<div className="select-none p-6 pb-2 my-4">
 			{/* <div className='bg-white/70 rounded-lg aspect-square flex items-center justify-center p-4'> */}
-				{/* Grid */}
-				<GridDisplay
-					grid={grid}
-					gridcolumn={GRID_COLUMN}
-					isEditing={isEditing}
-					handleSquareClick={handleSquareClick}
-					toggleCount={toggleCount}
-				/>
+			{/* Grid */}
+			<GridDisplay
+				grid={grid}
+				gridcolumn={GRID_COLUMN}
+				isEditing={isEditing}
+				handleSquareClick={handleSquareClick}
+				toggleCount={toggleCount}
+			/>
 			{/* </div> */}
 			<div className='flex justify-between my-2'>
 				<GridActions
@@ -192,11 +192,15 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					isErasing={isErasing}
 					setIsErasing={setIsErasing}
 				/>
-				<div className='text-right text-sm text-indigo-400 h-fit mt-auto'>
+				<div className='flex justify-center text-right text-sm text-slate-800 h-fit  '>
 					{/* Grid Info */}
-					Total Selectable: {totalSquare} <br/>
-					Checked: {totalChecked} <br/>
-					Completion: {Math.trunc(totalChecked / totalSquare * 100) || 0} %
+					<div className={`${!isEditing && 'hidden'} ${isEditing && 'block'}`}>
+						Total Selectable: {totalSquare} <br />
+						Checked: {totalChecked} <br />
+					</div>
+					<div>
+						{Math.trunc(totalChecked / totalSquare * 100) || 0} %
+					</div>
 				</div>
 			</div>
 
