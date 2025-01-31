@@ -2,4 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+[id^="animatedImage_grid"] {
+  position: absolute;
+  left: 0px;
+  top: -50px;
+  width: 80px;
+  height: 80px;
+  animation: linear infinite;
+  animation-name: walk;
+  animation-duration: 10s;
+}
+
+@keyframes walk {
+  0% {
+    left: 0;
+    top: -80px;
+  }
+
+  12.5% {
+    top: 0px;
+  }
+
+  25% {
+    top: -80px;
+  }
+
+  37.5% {
+    top: 0px;
+  } 
+
+  48% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    left: calc(100% - 80px);
+    top: -80px;
+    transform: rotateY(180deg);
+  }
+
+  62.5% {
+    top: 0px;
+  }
+
+  75% {
+    top: -80px;
+  }
+
+  87.5% {
+    top: 0px;
+  } 
+
+  98% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    left: 0;
+    top: -80px;
+    transform: rotateY(0deg);
+  }
+}
 

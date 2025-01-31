@@ -1,5 +1,6 @@
 import GridDisplay from './GridDisplay';
 import GridActions from './GridActions';
+import html2canvas from 'html2canvas';
 import { useState, useEffect } from 'react';
 
 export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
@@ -108,7 +109,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 				newGridSquares = grid.map((square) => (square.id === id ?
 					{
 						...square,
-						checked: true, 
+						checked: true,
 						selectable: false
 					}
 					: square
@@ -159,11 +160,27 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 		console.log("save grid");
 	}
 
+	const screenshotGrid = () => {
+		const input = document.getElementById(GRID_ID)
+		html2canvas(input,{
+			backgroundColor: null
+		}).then((canvas) => {
+			let img = new Image();
+			img.src = canvas.toDataURL("image/png");
+			img.id = `animatedImage_${GRID_ID}`;
+
+			// Add the image to animation container
+			let container = document.getElementById("animationArea");
+			container.appendChild(img);
+		})
+	}
+
 	return (
 		<div className="select-none p-6 pb-2 my-4">
 			{/* <div className='bg-white/70 rounded-lg aspect-square flex items-center justify-center p-4'> */}
 			{/* Grid */}
 			<GridDisplay
+				gridId={GRID_ID}
 				grid={grid}
 				gridcolumn={GRID_COLUMN}
 				isEditing={isEditing}
@@ -190,6 +207,10 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					isErasing={isErasing}
 					setIsErasing={setIsErasing}
 				/>
+				<button onClick={screenshotGrid}>
+					Complete!
+				</button>
+
 				<div className='flex justify-center text-right text-sm text-slate-800 h-fit  '>
 					{/* Grid Info */}
 					{/* <div className={`${!isEditing && 'hidden'} ${isEditing && 'block'}`}>

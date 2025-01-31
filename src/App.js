@@ -36,6 +36,11 @@ export default function App() {
     }, 100)
   }
 
+  const clearPets = () => {
+    let container = document.getElementById("animationArea")
+    container.innerHTML = ""
+  }
+
   return (
     <div className='App relative min-h-lvh bg-[#ded9ca] text-slate-700 select-none'>
 
@@ -51,8 +56,8 @@ export default function App() {
           <div className='text-xl'>
             All/
           </div>
-          <div className='text-xl'>
-            Edit/
+          <div className='text-xl cursor-pointer hover:underline' onClick={clearPets}>
+            ClearPets/
           </div>
           <div className='text-xl'>
             ..
@@ -83,7 +88,7 @@ export default function App() {
         }}
       >
         {grids.map((gridKey) => (
-          <div className='relative shrink-0 scroll-ml-6 snap-start w-[300px] first:w-[480px]' key={gridKey}>
+          <div className={` relative shrink-0 scroll-ml-6 snap-start w-[300px] first:w-[480px]`} key={gridKey}>
             <Grid
               GRID_ID={gridKey}
               GRID_ROW={15}
@@ -109,7 +114,10 @@ export default function App() {
 
 
       {/* Footer */}
-      <div className='absolute inset-x-0 bottom-0 h-28 bg-slate-900'>
+      <div id="animationArea" className='absolute inset-x-0 bottom-0 h-28 bg-slate-500/50'>
+        <button onClick={clearPets} className='absolute right-0 bottom-0 mx-2 italic hover:font-bold'>
+          clear All
+        </button>
       </div>
 
     </div>
