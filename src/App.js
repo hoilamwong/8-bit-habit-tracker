@@ -5,11 +5,13 @@ import Counter from './features/counter/Counter'
 export default function App() {
   // Check localStorage for existing grid keys
   const existingGrids = Object.keys(localStorage).filter(key => key.includes('grid')).sort()
+  // const incompleteGrids = Object.keys(localStorage).filter(key => key.match(/grid(\d+)$/)).sort()
+  // console.log(incompleteGrids);
+  
   const [grids, setGrids] = useState(existingGrids)
 
   // Find the highest grid id
   const highestGridId = () => {
-    const existingGrids = Object.keys(localStorage).filter(key => key.includes('grid'))
     const highestID = existingGrids.reduce((highest, currentId) => {
       const match = currentId.match(/grid(\d+)/)
       if (match) {
@@ -20,6 +22,7 @@ export default function App() {
     }, -1)
     return highestID
   }
+
 
   const addGrid = () => {
     const newId = highestGridId() + 1
@@ -67,7 +70,7 @@ export default function App() {
 
       {/* Main */}
       <div
-        className="flex w-5/6 mx-auto h-[600px] pr-24 snap-x overflow-x-auto 
+        className="z-20 flex w-5/6 mx-auto min-h-full h-[600px] pr-24 snap-x overflow-x-auto 
               scrollbar scrollbar-thumb-slate-700/30 scrollbar-track-[#ded9ca]"
         onScroll={(e) => {
           const itemWidth = 300 //base width of each grid
@@ -114,10 +117,11 @@ export default function App() {
 
 
       {/* Footer */}
-      <div id="animationArea" className='absolute inset-x-0 bottom-0 h-28 bg-slate-500/50'>
-        <button onClick={clearPets} className='absolute right-0 bottom-0 mx-2 italic hover:font-bold'>
+      <button onClick={clearPets} className='absolute z-10 right-0 bottom-0 mx-2 italic hover:font-semibold'>
           clear All
         </button>
+      <div id="animationArea" className='absolute inset-x-0 bottom-0 h-28 bg-slate-800/50'>
+
       </div>
 
     </div>

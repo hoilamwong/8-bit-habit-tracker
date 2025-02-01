@@ -5,60 +5,80 @@
 [id^="animatedImage_grid"] {
   position: absolute;
   left: 0px;
-  top: -50px;
-  width: 80px;
-  height: 80px;
-  animation: linear infinite;
-  animation-name: walk;
-  animation-duration: 10s;
+  width: 50px;
+  animation:
+    walk 20s linear infinite,
+    bounce 0.75s ease-in-out infinite;
+  animation-timing-function: linear;
+}
+
+[id^="animatedImage_grid"]:nth-child(n) {
+  --base-top: -40px;
+  --bounce-height: 18%;
+  top: var(--base-top);
+}
+
+[id^="animatedImage_grid"]:nth-child(2n) {
+  --base-top: 25px;
+  --bounce-height: 24%;
+  top: var(--base-top);
+}
+
+[id^="animatedImage_grid"]:nth-child(3n) {
+
+  --base-top: -30px;
+  --bounce-height: 30%;
+  top: var(--base-top);
+}
+
+[id^="animatedImage_grid"]:nth-child(4n) {
+
+  --base-top: -10px;
+  --bounce-height: 25%;
+  top: var(--base-top);
+}
+
+[id^="animatedImage_grid"]:nth-child(5n) {
+  --base-top: 45px;
+  --bounce-height: 35%;
+  top: var(--base-top);
 }
 
 @keyframes walk {
   0% {
     left: 0;
-    top: -80px;
   }
 
-  12.5% {
-    top: 0px;
-  }
-
-  25% {
-    top: -80px;
-  }
-
-  37.5% {
-    top: 0px;
-  } 
 
   48% {
     transform: rotateY(0deg);
   }
+
   50% {
     left: calc(100% - 80px);
-    top: -80px;
     transform: rotateY(180deg);
   }
-
-  62.5% {
-    top: 0px;
-  }
-
-  75% {
-    top: -80px;
-  }
-
-  87.5% {
-    top: 0px;
-  } 
 
   98% {
     transform: rotateY(180deg);
   }
+
   100% {
     left: 0;
-    top: -80px;
     transform: rotateY(0deg);
   }
 }
 
+@keyframes bounce {
+
+  0%,
+  100% {
+    top: calc(var(--base-top) - var(--bounce-height));
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    top: var(--base-top);
+    animation-timing-function: ease-out;
+  }
+}

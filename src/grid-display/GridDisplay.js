@@ -22,30 +22,27 @@ export default function GridDisplay({ gridId, grid, gridcolumn, handleSquareClic
         gridTemplateColumns: `repeat(${gridcolumn}, minmax(0, 1fr))`
       }}
     >
-      {/* <div id={gridId}> */}
-        {/* Individual Square */}
-        {grid && grid.map((square) => (
-          <div
-            key={`square-${square.id}`}
-            // onClick={(e) => handleSquareClick(e, square.id)}
-            onMouseDown={(e) => handleSquareClick(e, square.id)}
-            onMouseOver={(e) => handleMouseOver(e, square.id)}
-            className={`h-full w-full aspect-square justify-center items-center flex text-sm hover:scale-110 duration-100 transition-transform
+      {/* Individual Square */}
+      {grid && grid.map((square) => (
+        <div
+          key={`square-${square.id}`}
+          // onClick={(e) => handleSquareClick(e, square.id)}
+          onMouseDown={(e) => handleSquareClick(e, square.id)}
+          onMouseOver={(e) => handleMouseOver(e, square.id)}
+          className={`h-full w-full aspect-square justify-center items-center flex text-sm hover:scale-110 duration-100 transition-transform
             ${square.checked && 'bg-slate-800 text-white'}
             ${square.selectable && !square.checked && `cursor-pointer bg-slate-500/50`}
             ${!square.selectable && 'cursor-not-allowed'}
-            ${(square.selectable || square.checked) && 'border border-[#ded9ca]/50'}
             ${isEditing && 'border border-slate-100/30 cursor-pointer'}
           `}
-          >
-            {(square.selectable && toggleCount) &&
-              <div className='hidden sm:flex'>
-                {square.count}
-              </div>
-            }
-          </div>
-        ))}
-      {/* </div> */}
+        >
+          {(square.selectable && toggleCount) &&
+            <div className='hidden sm:flex'>
+              {square.count}
+            </div>
+          }
+        </div>
+      ))}
 
     </div>
   )

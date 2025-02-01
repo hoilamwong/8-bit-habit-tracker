@@ -5,22 +5,12 @@ import { useState, useEffect } from 'react';
 
 export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 
-	// const GRID_ID = 'grid'
-	// const GRID_ROW = 8
-	// const GRID_COLUMN = 11
-
 	const [isEditing, setIsEditing] = useState(false)
 	const [isAdding, setIsAdding] = useState(false)
 	const [isFilling, setIsFilling] = useState(false)
 	const [isErasing, setIsErasing] = useState(true)
 	const [isChecking, setIsChecking] = useState(true)
 
-	// const [editingActions, setEditingActions] = useState([{
-	// 	isAdding2 : false,
-	// 	isFilling2 : false,
-	// 	isErasing2 : false,
-	// 	isChecking2 : true,
-	// }])
 
 	const makeGrid = (row, column) => {
 		let gridArr = []
@@ -39,6 +29,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 		}
 		return gridArr
 	}
+
 	const [grid, setGrid] = useState((localStorage.getItem(GRID_ID) && localStorage.getItem(GRID_ID).length) ? JSON.parse(localStorage.getItem(GRID_ID)) : makeGrid(GRID_ROW, GRID_COLUMN))
 
 	const [totalSquare, setTotalSquare] = useState(grid.filter((square) => square.selectable).length)
@@ -67,6 +58,9 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 	useEffect(() => {
 		localStorage.setItem(GRID_ID, JSON.stringify(grid))
 	}, [grid])
+
+	useEffect(() => {
+	}, [])
 
 	const resetActions = () => {
 		// console.log(Object.values(editingActions));
@@ -156,18 +150,15 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 		setGrid(newGridSquares)
 	}
 
-	const saveGrid = () => {
-		console.log("save grid");
-	}
-
 	const screenshotGrid = () => {
 		const input = document.getElementById(GRID_ID)
-		html2canvas(input,{
+		html2canvas(input, {
 			backgroundColor: null
 		}).then((canvas) => {
 			let img = new Image();
 			img.src = canvas.toDataURL("image/png");
 			img.id = `animatedImage_${GRID_ID}`;
+			img.draggable = false
 
 			// Add the image to animation container
 			let container = document.getElementById("animationArea");
@@ -175,9 +166,9 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 		})
 	}
 
+
 	return (
 		<div className="select-none p-6 pb-2 my-4">
-			{/* <div className='bg-white/70 rounded-lg aspect-square flex items-center justify-center p-4'> */}
 			{/* Grid */}
 			<GridDisplay
 				gridId={GRID_ID}
@@ -187,8 +178,18 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 				handleSquareClick={handleSquareClick}
 				toggleCount={toggleCount}
 			/>
-			{/* </div> */}
-			<div className='flex justify-between my-2'>
+
+			<div className='my-2 font-bold tracking-widest'>
+				{(totalChecked / totalSquare) >= 1 ?
+					// Show % or Complete (Make a Pet)
+					<div id="completeGrid" className="cursor-pointer animate-pulse hover:italic tracking-widest " onClick={screenshotGrid}>
+						Complete!
+					</div>
+					:
+					<div>
+						{Math.trunc(totalChecked / totalSquare * 100) || 0}&nbsp;%
+					</div>
+				}
 				<GridActions
 					grid={grid}
 					setGrid={setGrid}
@@ -196,7 +197,6 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					toggleEdit={toggleEdit}
 					toggleCount={toggleCount}
 					setToggleCount={setToggleCount}
-					saveGrid={saveGrid}
 					resetActions={resetActions}
 					isChecking={isChecking}
 					setIsChecking={setIsChecking}
@@ -207,20 +207,9 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					isErasing={isErasing}
 					setIsErasing={setIsErasing}
 				/>
-				<button onClick={screenshotGrid}>
-					Complete!
-				</button>
 
-				<div className='flex justify-center text-right text-sm text-slate-800 h-fit  '>
-					{/* Grid Info */}
-					{/* <div className={`${!isEditing && 'hidden'} ${isEditing && 'block'}`}>
-						Total Selectable: {totalSquare} <br />
-						Checked: {totalChecked} <br />
-					</div> */}
-					<div className='font-bold'>
-						{Math.trunc(totalChecked / totalSquare * 100) || 0} %
-					</div>
-				</div>
+
+
 			</div>
 
 

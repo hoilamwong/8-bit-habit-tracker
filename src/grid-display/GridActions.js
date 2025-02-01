@@ -3,30 +3,20 @@ import { TbEdit } from "react-icons/tb";
 import { FaSave, FaCheckSquare, FaPen, FaSquare, FaEraser } from "react-icons/fa";
 import { MdOutlineNumbers } from "react-icons/md";
 
-export default function GridActions({ grid, setGrid, isEditing, toggleEdit, saveGrid, toggleCount, setToggleCount,
+export default function GridActions({ grid, setGrid, isEditing, toggleEdit, toggleCount, setToggleCount,
   resetActions, isChecking, setIsChecking, isAdding, setIsAdding, isFilling, setIsFilling, isErasing, setIsErasing }) {
 
-  const EDITING_ICON_SIZE = 30
+  const EDITING_ICON_SIZE = 25
 
 
   return (
-    <div className='flex'>
+    <div className='flex justify-between'>
 
       {/* Actions */}
-
-      {/* Edit */}
-      <div onClick={() => toggleEdit()}
-        className={`cursor-pointer px-2 h-fit font-thin hover:italic
-              ${isEditing && 'animate-pulse bg-slate-700 text-white'}
-            `}
-        size={EDITING_ICON_SIZE}>
-        {isEditing ? <span>Save</span> : <span>Edit</span>}
-      </div>
-
       {/* Edit Mode */}
       {isEditing &&
         <>
-          <div className='flex gap-1 ml-4'>
+          <div className='flex gap-1'>
             {/* Add a Unchecked Selectable Mode */}
             <FaPen onClick={() => { resetActions(); setIsAdding(true); }}
               className={`  cursor-pointer p-1 hover:text-slate-800
@@ -66,16 +56,24 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, save
             `}
               size={EDITING_ICON_SIZE}
             />
-
+            <button className='px-1 hover:underline'>
+              Delete
+            </button>
           </div>
-          {/* <button onClick={() => { }}
-            className={`border-b border-x border-black cursor-pointer p-1 
-                      hover:animate-pulse hover:bg-slate-500 `}
-          >
-            Reset Grid
-          </button> */}
+
+
         </>
       }
+
+      {/* Edit */}
+      <div onClick={() => toggleEdit()}
+        className={`cursor-pointer h-fit font-thin hover:italic
+              ${isEditing && 'animate-pulse bg-slate-700 text-white'}
+            `}
+        size={EDITING_ICON_SIZE}>
+        {isEditing ? <span className='px-1'>Save</span> : <span>Edit</span>}
+      </div>
+
     </div>
   )
 }
