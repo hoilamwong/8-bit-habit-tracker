@@ -207,13 +207,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 					isErasing={isErasing}
 					setIsErasing={setIsErasing}
 				/>
-
-
-
 			</div>
-
-
-
 		</div>
 	);
 }
