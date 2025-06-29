@@ -67,7 +67,7 @@ export default function GridActions({ grid, setGrid, isEditing, toggleEdit, togg
 
       {/* Edit */}
       <div onClick={() => toggleEdit()}
-        className={`cursor-pointer h-fit font-thin hover:italic
+        className={`cursor-pointer h-fit hover:italic
               ${isEditing && 'animate-pulse bg-slate-700 text-white'}
             `}
         size={EDITING_ICON_SIZE}>

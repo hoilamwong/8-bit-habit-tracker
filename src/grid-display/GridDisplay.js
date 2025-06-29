@@ -16,7 +16,6 @@ export default function GridDisplay({ gridId, grid, gridcolumn, handleSquareClic
   return (
     <div
       id={gridId}
-      // className={'grid w-full aspect-square rounded-sm border-4 border-slate-400/30 border-dashed '}
       className={'grid w-full aspect-square rounded-sm'}
       style={{
         gridTemplateColumns: `repeat(${gridcolumn}, minmax(0, 1fr))`

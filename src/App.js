@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react' 
 import Grid from './grid-display/Grid'
-import Counter from './features/counter/Counter'
+import { useNavigate } from 'react-router'
 
 export default function App() {
   // Check localStorage for existing grid keys
   const existingGrids = Object.keys(localStorage).filter(key => key.includes('grid')).sort()
   // const incompleteGrids = Object.keys(localStorage).filter(key => key.match(/grid(\d+)$/)).sort()
   // console.log(incompleteGrids);
-  
+
+
   const [grids, setGrids] = useState(existingGrids)
+
+  const navigate = useNavigate()
+
 
   // Find the highest grid id
   const highestGridId = () => {
@@ -39,34 +43,8 @@ export default function App() {
     }, 100)
   }
 
-  const clearPets = () => {
-    let container = document.getElementById("animationArea")
-    container.innerHTML = ""
-  }
-
   return (
-    <div className='App relative min-h-lvh bg-[#ded9ca] text-slate-700 select-none'>
-
-      {/* Header */}
-      <div className='flex flex-row items-center p-12 pb-4'>
-        <div className='border-4 border-dotted border-slate-800 rounded-2xl aspect-square h-24'>
-        </div>
-
-        <div className='flex flex-row gap-1 mx-2 py-4 font-semibold items-center h-24 '>
-          <div className='text-6xl'>
-            Home/
-          </div>
-          <div className='text-xl'>
-            All/
-          </div>
-          <div className='text-xl cursor-pointer hover:underline' onClick={clearPets}>
-            ClearPets/
-          </div>
-          <div className='text-xl'>
-            ..
-          </div>
-        </div>
-      </div>
+    <div className='App relative bg-[#ded9ca] text-slate-700 select-none'>
 
       {/* Main */}
       <div
@@ -97,6 +75,7 @@ export default function App() {
               GRID_ROW={15}
               GRID_COLUMN={15}
             />
+            <button onClick={() => navigate(`grids/${gridKey}`)}>View</button>
           </div>
         ))}
 
@@ -113,15 +92,6 @@ export default function App() {
           </svg>
           A D D
         </div>
-      </div>
-
-
-      {/* Footer */}
-      <button onClick={clearPets} className='absolute z-10 right-0 bottom-0 mx-2 italic hover:font-semibold'>
-          clear All
-        </button>
-      <div id="animationArea" className='absolute inset-x-0 bottom-0 h-28 bg-slate-800/50'>
-
       </div>
 
     </div>

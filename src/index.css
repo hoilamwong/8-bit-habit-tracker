@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 [id^="animatedImage_grid"] {
   position: absolute;
   left: 0px;
@@ -81,4 +82,8 @@
     top: var(--base-top);
     animation-timing-function: ease-out;
   }
+}
+
+a.active {
+  color: #0f172a;
 }

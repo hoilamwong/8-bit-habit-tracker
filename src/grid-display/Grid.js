@@ -2,6 +2,7 @@ import GridDisplay from './GridDisplay';
 import GridActions from './GridActions';
 import html2canvas from 'html2canvas';
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router';
 
 export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 
@@ -11,7 +12,11 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 	const [isErasing, setIsErasing] = useState(true)
 	const [isChecking, setIsChecking] = useState(true)
 
+	const navigate = useNavigate()
+	const location = useLocation()
 
+
+	
 	const makeGrid = (row, column) => {
 		let gridArr = []
 		// Push square to subarray 
@@ -150,6 +155,7 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 		setGrid(newGridSquares)
 	}
 
+
 	const screenshotGrid = () => {
 		const input = document.getElementById(GRID_ID)
 		html2canvas(input, {
@@ -168,7 +174,9 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 
 
 	return (
-		<div className="select-none p-6 pb-2 my-4">
+		<div className="select-none mx-4">
+			<div className='font-bold px-auto text-center italic tracking-widest text-lg pb-4'>Grid Title</div>
+
 			{/* Grid */}
 			<GridDisplay
 				gridId={GRID_ID}
@@ -180,9 +188,10 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 			/>
 
 			<div className='my-2 font-bold tracking-widest'>
+
 				{(totalChecked / totalSquare) >= 1 ?
 					// Show % or Complete (Make a Pet)
-					<div id="completeGrid" className="cursor-pointer animate-pulse hover:italic tracking-widest " onClick={screenshotGrid}>
+					<div id="completeGrid" className="cursor-pointer hover:animate-pulse hover:italic tracking-widest " onClick={screenshotGrid}>
 						Complete!
 					</div>
 					:
@@ -190,23 +199,28 @@ export default function App({ GRID_ID, GRID_ROW, GRID_COLUMN }) {
 						{Math.trunc(totalChecked / totalSquare * 100) || 0}&nbsp;%
 					</div>
 				}
-				<GridActions
-					grid={grid}
-					setGrid={setGrid}
-					isEditing={isEditing}
-					toggleEdit={toggleEdit}
-					toggleCount={toggleCount}
-					setToggleCount={setToggleCount}
-					resetActions={resetActions}
-					isChecking={isChecking}
-					setIsChecking={setIsChecking}
-					isAdding={isAdding}
-					setIsAdding={setIsAdding}
-					isFilling={isFilling}
-					setIsFilling={setIsFilling}
-					isErasing={isErasing}
-					setIsErasing={setIsErasing}
-				/>
+				<div className='flex font-thin'>
+
+					<div onClick={() => navigate(`/grids/${GRID_ID}`)} className='pr-2 hover:italic cursor-pointer'>View |</div>
+
+					<GridActions
+						grid={grid}
+						setGrid={setGrid}
+						isEditing={isEditing}
+						toggleEdit={toggleEdit}
+						toggleCount={toggleCount}
+						setToggleCount={setToggleCount}
+						resetActions={resetActions}
+						isChecking={isChecking}
+						setIsChecking={setIsChecking}
+						isAdding={isAdding}
+						setIsAdding={setIsAdding}
+						isFilling={isFilling}
+						setIsFilling={setIsFilling}
+						isErasing={isErasing}
+						setIsErasing={setIsErasing}
+					/>
+				</div>
 			</div>
 		</div>
 	);
